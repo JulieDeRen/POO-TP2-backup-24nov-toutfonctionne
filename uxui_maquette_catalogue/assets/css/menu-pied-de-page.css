@@ -1,0 +1,163 @@
+footer{
+    padding-top: 5rem;
+    background-color: white;
+    padding-bottom: 3rem;
+}
+.menu-pied-de-page .flexVertical{
+    /* background-color: rgb(247, 247, 247); */
+    gap: 5rem;
+}
+.menu-pied-de-page .logo{
+    width: 30vw;
+    /* height: 170px; */
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+}
+.menu-pied-de-page .h2-pied-de-page{
+    color: darkblue;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.menu-pied-de-page .flexHorizontal{
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: nowrap;
+}
+.menu-pied-de-page-entete{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.menu-pied-de-page h3{
+    text-transform: uppercase;
+}
+.flexHorizontal_2Colonnes{
+    margin : 0 5rem;
+}
+.flexHorizontal_2Colonnes_text{
+    width:50ch;
+}
+
+.flexHorizontal_2Colonnes_form>form{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+.menu-pied-de-page input{
+    display: inline;
+}
+
+.menu-pied-de-page input[type=text]{
+    width: 400px;
+    padding: 1.2rem 1.5rem;
+    margin: 8px 3px 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+}
+.menu-pied-de-page input[type=text]:focus{
+    color: darkblue;
+    background-color: white;
+    outline: 1.5px solid darkblue;
+}
+  
+.menu-pied-de-page input[type=submit] {
+    padding: 1.2rem 1.5rem;
+    border-radius: 5px;
+    color: darkblue;
+    background-color: white;
+    outline: 1.5px solid darkblue;
+    font-weight: normal;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+  
+.menu-pied-de-page input[type=submit]:hover {
+    color: darkred;
+    background-color: white;
+    outline: 1.5px solid darkred;
+}
+/*------- 3 colonnes ----------*/
+.flexHorizontal_3Colonnes{
+    width: 40ch;
+}
+
+.flexHorizontal_3Colonnes_lien:hover{
+    cursor: pointer;
+}
+/* ------- lien ------*/
+
+.menu-pied-de-page a{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+.menu-pied-de-page a:hover{
+    color: rgb(220, 187, 4);
+}
+/*----- Nav ------*/
+
+.menu-pied-de-page .menu-exemple-pied-de-page{
+    display: flex;
+    justify-content: space-between;
+
+    overflow: auto;
+}
+
+.menu-exemple-pied-de-page a,
+.menu-exemple-pied-de-page .dropdown {
+    display: inline;
+    text-decoration: none;
+    color: grey;
+    padding : 15px;
+    font-size: 1.1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.menu-exemple-pied-de-page>div{
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.menu-exemple-pied-de-page a:hover,
+.menu-exemple-pied-de-page .dropdown:hover{
+    color: darkblue;
+}
+
+.menu-exemple-pied-de-page .dropdown:hover {
+    border-bottom: none;
+}
+/*----- icones------*/
+.fleche-pied-de-page-paragraphe{
+    width: 30px;
+    vertical-align: middle;
+}
+.media-sociaux-pied-de-page{
+    width: 30px;
+    vertical-align: middle;
+}
+/* ---- media sociaux ------ */
+.media-sociaux{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.media-sociaux img{
+    width: 50px;
+}

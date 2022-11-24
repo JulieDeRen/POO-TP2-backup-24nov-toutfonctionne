@@ -1,0 +1,180 @@
+.bouton-encherir{
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-transform: capitalize;
+    background-color: white;
+    color: darkblue;
+    border: 1.5px solid darkblue;
+    font-weight: bold;
+    margin-right: 2.5rem;
+}
+.bouton-encherir:hover{
+    transition-duration: 200ms;
+    background-color: darkblue;
+    color: white;
+}
+.pleine-largeur{
+    background-color: darkblue;
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 0.75rem;
+}
+.pleine-largeur:hover{
+    background-color: darkgoldenrod;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 0.75rem;
+}
+.input-encherir{
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-transform: capitalize;
+    background-color: white;
+    color: darkblue;
+    border: none;
+    outline: 1.5px solid grey;
+    font-weight: bold;
+}
+.bouton-choix-enchere{
+    padding: 0.75rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-transform: capitalize;
+    background-color: none;
+    color: darkblue;
+    border: none;
+    /*outline: 1.5px solid darkblue;*/
+    font-weight: bold;
+}
+.bouton-choix-enchere:hover,
+.bouton-choix-enchere.active{
+    background-color: darkgoldenrod;
+    color: white;
+    outline: 1.5px solid darkgoldenrod;
+}
+.bouton-ajouter{
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+.bouton-ajouter:hover{
+    color: darkblue;
+    background-color: white;
+    outline: 1.5px solid darkblue;
+}
+.bouton-suivre{
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: darkred;
+    background-color: white;
+    outline: 1.5px solid darkred;
+    font-weight: normal;
+    border: none;
+}
+.bouton-suivre:hover{
+    background-color: darkblue;
+    color: white;
+    outline: none;
+}
+.bouton-soumettre{
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: darkred;
+    font-weight: normal;
+    border: none;
+}
+.bouton-soumettre:hover{
+    color: darkred;
+    background-color: white;
+    outline: 1.5px solid darkred;
+}
+.bouton-contacter{
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: darkred;
+    font-weight: normal;
+    border: none;
+}
+.bouton-contacter:hover{
+    color: white;
+    background-color: darkblue;
+}
+.bouton-information{
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: darkred;
+    background-color: white;
+    outline: 1.5px solid darkred;
+    font-weight: normal;
+    border: none;
+}
+.bouton-information:hover{
+    color: darkblue;
+    background-color: white;
+    outline: 1.5px solid darkblue;
+}
+/*
+.bouton-rechercher{
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: grey; /* rgb(238, 236, 236); 
+    font-weight: normal;
+    border: none;
+}
+.bouton-rechercher:hover{
+    color: grey;
+    background-color: white;
+    outline: 1.5px solid grey;
+}*/
+
+.bouton-lien-redirection{
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    transition-duration: 0.5s;
+}
+.bouton-lien-redirection:hover{
+    color: darkblue;
+}
+.bouton-suivant,
+.bouton-precedent{
+    z-index: 9999;
+}
+.bouton-suivant{
+    position: absolute;
+    top: calc(50% - 30px);
+    right: -0.5rem;
+}
+.bouton-precedent{
+    position: absolute;
+    top: calc(50% - 30px);
+    left: -0.5rem;
+}
+.bouton-suivant>span,
+.bouton-precedent>span{
+    font-size: 50px;
+    background-color: white;
+    border-radius: 50%;
+}
+.bouton-suivant>span:hover,
+.bouton-precedent>span:hover{
+    color: grey;
+}
+

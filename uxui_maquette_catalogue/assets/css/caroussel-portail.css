@@ -1,0 +1,52 @@
+/*-------- Caroussels ------------*/
+
+.caroussel-portail {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.caroussel-portail img{
+    max-height: 180px;
+    margin: auto;
+}
+.caroussel-portail .flexVertical{
+    padding: 1.5rem;
+    /*border: 1px solid rgb(247, 247, 247);*/
+    /*box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
+    /*box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  #1 Source : https://getcssscan.com/css-box-shadow-examples #0 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+}
+.caroussel-portail .flexVertical:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; /* rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    cursor: pointer;
+}
+
+.caroussel-portail-liste {
+    display: flex;
+    flex-direction: column;
+}
+.caroussel-portail .flexVertical>div{
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+/*----- Typo carroussel -----*/
+.caroussel-portail h2{
+    font-size: 1.2rem;
+}
+.caroussel-portail h3{
+    font-size: 1rem;
+}
+.caroussel-portail .icone{
+    width: 30px;
+    height: 30px;
+    align-self: center;
+}
+.caroussel-portail .bouton-carte{
+    width: auto;
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+}
+
+

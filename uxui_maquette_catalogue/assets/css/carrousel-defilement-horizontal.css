@@ -1,0 +1,59 @@
+.caroussel-horizontal {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style:none;
+    scrollbar-width: none; 
+    max-width: calc(1200px - (2.5*16)px);
+    padding: 2.5rem 3.5;
+
+}
+.caroussel-horizontal img{
+    max-height: 180px;
+    margin: auto;
+}
+/*Source : https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hide_scrollbar_keep_func*/
+.caroussel-horizontal::-webkit-scrollbar{
+    display:none;
+}
+
+.caroussel-horizontal .flexVertical{
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+.caroussel-horizontal .flexVertical:hover{
+    cursor: pointer;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; /* rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.caroussel-horizontal-liste {
+    display: flex;
+    flex-direction: column;
+}
+.caroussel-horizontal .flexVertical>div{
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    min-width: 200px;
+    padding: 0 1rem;
+}
+/*----- Typo carroussel -----*/
+.caroussel-horizontal h2{
+    font-size: 1.2rem;
+}
+.caroussel-horizontal h3{
+    font-size: 1rem;
+}
+.caroussel-horizontal .icone{
+    width: 30px;
+    height: 30px;
+    align-self: center;
+}
+.caroussel-horizontal .bouton-carte{
+    width: auto;
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+}

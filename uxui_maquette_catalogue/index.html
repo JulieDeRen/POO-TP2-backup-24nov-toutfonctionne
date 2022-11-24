@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/utilitaires.css">
+    <link rel="stylesheet" href="assets/css/bouton.css">
+    <link rel="stylesheet" href="assets/css/les-grilles.css">
+    <link rel="stylesheet" href="assets/css/banniere-hero.css">
+    <link rel="stylesheet" href="assets/css/barre-recherche.css">
+    <link rel="stylesheet" href="assets/css/caroussel-portail.css">
+    <link rel="stylesheet" href="assets/css/menu-lateral.css">
+    <link rel="stylesheet" href="assets/css/menu-pied-de-page.css">
+    <link rel="stylesheet" href="assets/css/menu-entete.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="module" src="http://localhost:8888/CoursPOO/POO-TP2/uxui_maquette_catalogue/assets/script/main.js"></script>
+    <title>Catalogue des enchères de timbres</title>
+</head>
+<!-- Sandafayre.com à consulter effet de survol est important sur les cartes-->
+<body id="grille" class="les-grilles-page">
+    <div class="les-grilles-page-menu">
+        <nav class=" menu-entete-secondaire">
+            <a href="#">VIP</a>
+            <a href="#">Services</a>
+            <a href="#">Devise</a>
+            <a href="#">Langue</a>
+            <a href="#" class="strong">Connexion | Inscription</a>
+        </nav>
+        <hr>
+        <nav class="menu-entete">
+            <div class="logo"><img src="assets/img/logo.png" alt="logo"></div>
+            <div class="menu-entete-onglet">
+                <a href="http://localhost:8888/CoursPOO/POO-TP2/">Accueil</a>
+                <div class = "dropdown">
+                    <button class="menu-button"> Enchères
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">En ligne</a>
+                        <a href="#">En vrai</a>
+                    </div>
+                </div>
+                <a href="#">Timbres</a>
+                <div class = "dropdown">
+                    <button class="menu-button"> A propos
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Lord Reginald Stampee</a>
+                        <a href="#">A propos du bridge</a>
+                    </div>
+                </div>
+                <a href="#">Informations</a>
+                <a href="#">Rechercher</a>
+            </div>
+        </nav>
+        <hr>
+    </div>
+    <header class="les-grilles-page-header entete-principal">
+        <img src="assets/img/banniere/stamp_queen_1400.jpg" alt="Background timbre">
+        <div>
+            <h1 class="titre">Les enchères</h1>
+        </div>
+    </header>
+    <div class="les-grilles-page-rechercher rechercher">
+        <div class="barre-recherche">
+          <form action="">
+            <input type="text" placeholder="Rechercher..." name="rechercher">
+            <button type="button" class="bouton-rechercher"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+    </div>
+    <aside class="filtre les-grilles-page-aside flexHorizontal menu-lateral" id="menu-lateral">          
+        <div class="flexVertical">
+            <h3>Filtrez votre recherche</h3>
+            <ul class="liste-categorie accordeon">
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <section class="les-grilles-page-main caroussel-portail">
+        </section>
+    </main>
+    <footer class="les-grilles-page-footer menu-pied-de-page" id="menu-pied-de-page">
+        <div class="flexVertical">
+            <div class="menu-pied-de-page-entete">
+                <header>
+                    <div class="logo"><img src="assets/img/logo.png" alt="logo"></div>
+                    <!--<h2 class="h2-pied-de-page">Comment trouver le timbre de vos rêves ?</h2>-->
+                </header>
+                <!--<hr>-->
+            </div>
+            <div class="flexHorizontal flexHorizontal_2Colonnes">
+                <div class="flexHorizontal_2Colonnes_text">
+                    <h3>Restez connecté</h3>
+                    <p>Nous vous ferons parvenir toute la documentation nécessaire pour que vous ne ratiez aucune occasion de compléter votre collection de timbres.  Vous aurez toute la documentation requise pour placer des enchères avisées.</p>
+                </div>
+                <div class="flexHorizontal_2Colonnes_form">
+                    <form action="/inscription_liste_envoie.php">
+                        <input type="text" id="courriel" name="courriel" placeholder="Votre courriel">
+                        <input type="submit" value="Soumettre">
+                        </form>
+                </div>
+            </div>
+            <div>
+                <hr>
+                <nav class="menu-exemple-pied-de-page">
+                    <a href="#">Enchères en ligne</a>
+                    <a href="#">Enchères en live</a>
+                    <a href="#">Trousse de démarrage</a>
+                    <a href="#">Paiements sécurisés</a>
+                    <a href="#">Méthodes de livraison</a>
+                </nav>
+                <hr>
+            </div>
+            <div class="flexHorizontal">
+                <div class="flexHorizontal_3Colonnes">
+                    <h3>Créer un compte</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, qui tenetur. Ducimus vitae atque error doloribus et laboriosam fugit laborum.</p>
+                    <div class="flexHorizontal_3Colonnes_lien">
+                        <a href="#">Créer</a>
+                        <img src="assets/img/icone/zzzz-right-arrow (1).png" class="fleche-pied-de-page-paragraphe" alt="flèche droite">
+                    </div>
+                </div>
+                <div class="flexHorizontal_3Colonnes">
+                    <div class="flexHorizontal_3Colonnes">
+                        <h3>Service à la clientèle</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, qui tenetur. Ducimus vitae atque error doloribus et laboriosam fugit laborum.</p>
+                        <div class="flexHorizontal_3Colonnes_lien">
+                            <a href="#">Contacter-nous</a>
+                            <img src="assets/img/icone/zzzz-right-arrow (1).png" class="fleche-pied-de-page-paragraphe" alt="flèche droite">
+                        </div>
+                    </div>
+                </div>
+                <div class="flexHorizontal_3Colonnes">
+                    <h3>Salon VIP</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ab odit eos quod excepturi distinctio ullam! Quae expedita cum ipsam!</p>
+                    <div class="flexHorizontal_3Colonnes_lien">
+                        <a href="#">Entrer</a>
+                        <img src="assets/img/icone/zzzz-right-arrow (1).png" class="fleche-pied-de-page-paragraphe" alt="flèche droite">
+                    </div>
+                </div>
+            </div>
+            <div class="media-sociaux">
+                <img src="assets/img/icone/facebook (2).png" class="media-sociaux-pied-de-page" alt="facebook">
+                <img src="assets/img/icone/whatsapp (2).png" class="media-sociaux-pied-de-page" alt="whatsapp">
+                <img src="assets/img/icone/instagram (4).png" class="media-sociaux-pied-de-page" alt="instagram">
+                <img src="assets/img/icone/youtube (2).png" class="media-sociaux-pied-de-page" alt="youtube">
+                <img src="assets/img/icone/tik-tok (1).png" class="media-sociaux-pied-de-page" alt="tik-tok">
+                <img src="assets/img/icone/twitter.png" class="media-sociaux-pied-de-page" alt="twitter">
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+</html>

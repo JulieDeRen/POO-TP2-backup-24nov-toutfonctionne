@@ -23,7 +23,7 @@
                     <a href="{{ path }}format/index">Liste formats</a>
                     <a href="{{ path }}condition/create">Ajouter condition</a>
                     <a href="{{ path }}condition/index">Liste conditions</a>
-                    <a href="site-en-ligne/index.html">Site web</a>
+                    <a href="{{ path }}uxui_maquette_catalogue/">Site web</a>
                 </div>
             </button>
         </nav>
