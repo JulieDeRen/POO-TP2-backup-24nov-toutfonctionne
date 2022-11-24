@@ -1,5 +1,5 @@
 # POO-TP2
-## Professeur : Marcos Sanches
+## https://e2295160.webdev.cmaisonneuve.qc.ca/POO-TP2
 
 ## Le mandat actuel consiste donc à développer la base de données pour soutenir la plateforme de programmer l’interface qui permet de saisir l’entrée de nouveaux clients.
 
@@ -29,4 +29,8 @@ La table pays est utilisée autant par les timbres que par les clients. Donc, il
 La table intermédiaire enregistre les timbres qui sont dans le panier de souhaits de chaque client. Le même timbre peut être dans plusieurs paniers
 différents à la fois, puisqu’il n’a pas encore été acheté. Un timbre peut être dans zéro ou plusieurs paniers et un client peut avoir zéro ou plusieurs timbres dans son panier. Il est à noter que s’il n’y avait pas de panier ou bien si le modèle d’affaires de la compagnie ne permettait pas à un timbre d’être dans plusieurs paniers à la fois (ce qui constitue un risque financier), alors il n’y aurait pas cette table intermédiaire. Il y a un prix et une date de transaction, lorsque le timbre est acheté. Automatiquement la date de transaction entrée, elle retire le timbre des paniers d’autres clients qui auraient souhaité l’acheter.
 
-## https://e2295160.webdev.cmaisonneuve.qc.ca/POO-TP2
+## Professeur : Marcos Sanches
+## Références additionnelles : 
+https://stackoverflow.com/questions/18730875/access-loop-index-when-within-another-loop-in-twig
+https://learnsql.com/blog/how-to-left-join-multiple-tables/
+
