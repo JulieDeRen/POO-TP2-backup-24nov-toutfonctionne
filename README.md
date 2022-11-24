@@ -1,4 +1,5 @@
 # POO-TP2
+## Professeur : Marcos Sanches
 
 ## Le mandat actuel consiste donc à développer la base de données pour soutenir la plateforme de programmer l’interface qui permet de saisir l’entrée de nouveaux clients.
 
