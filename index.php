@@ -2,7 +2,7 @@
 // require_once __DIR__ .'/librairy/RequireView.php';
 require_once __DIR__ .'/library/RequirePage.php';
 require_once __DIR__.'/vendor/autoload.php';
-require_once __DIR__.'/library/twig.php';
+require_once __DIR__.'/library/Twig.php'; // attention à majuscule ou minuscule ***
 require_once __DIR__.'/library/RenderView.php';
 // if isset du chemin existe explode à la / et nettoryer pour renvoyer un tableau sinon juste /
 // le / c'est la racine (la page d'accueil)

@@ -10,12 +10,11 @@ class ModelClient extends Crud {
     protected $fillable = ['id', 'firstName', 'lastName', 'addresse', 'birthday', 'password', 'email', 'idCountry', 'countryName'];
 
     public function insertClient($data){
-        // traiter les données non requise mais qui posent problème si pas saisie dans la requête
-        if(isset($data['birthday'])&&$data['birthday']==""){
-            unset($data['birthday']);
-        }
-        if(isset($data['idCountry'])&&$data['idCountry']=="-1"){
-            unset($data['idCountry']);
+        // traiter les données non obligatoires qui posent problème (date, birthday, country) si elle ne sont pas saisie dans la requête
+        foreach($data as $key => $value){
+            if(isset($data[$key]) && ($value=="" || $value=="-1")){
+                unset($data[$key]);
+            }
         }
         $data_keys = array_fill_keys($this->fillable, '');
         $data_map = array_intersect_key($data, $data_keys);
