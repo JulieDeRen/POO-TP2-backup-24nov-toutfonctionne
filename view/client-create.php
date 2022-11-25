@@ -35,8 +35,8 @@
             <ul class="form-style-1">
                 <li>
                     <label for = "lastName">Nom complet<span class="required">*</span></label>
-                    <input type="text" name = "lastName" placeholder="Nom de famille" class="field-divided">
-                    <input type="text" name = "firstName" placeholder="Prénom"class="field-divided">
+                    <input type="text" name = "lastName" placeholder="Nom de famille*" class="field-divided">
+                    <input type="text" name = "firstName" placeholder="Prénom*"class="field-divided">
                 </li>
                 <li>
                     <label for="email">Courriel<span class="required">*</span><span class="form-colonne-droite">Mot de passe</span><span class="required">*</span></label>
@@ -47,7 +47,7 @@
                     <label for = "birthday">Anniversaire</label>
                     <input type="date" name = "birthday" placeholder = "Date d'anniversaire" class="field-divided">
                     <select name="idCountry" class="field-divided">
-                        <option>- Choisissez un pays<span class="required">*</span> -</option>
+                        <option value = "-1">- Choisissez un pays -</option>
 
                     {% for country in countries %}
                         <option value="{{country.idCountry}}">{{country.countryName}}</option>

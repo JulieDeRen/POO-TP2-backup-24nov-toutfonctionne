@@ -52,7 +52,8 @@
                     <label for = "birthday">Anniversaire</label>
                     <input type="date" name = "birthday" value="{{client.birthday}}" class="field-divided">
                     <select name="idCountry" class="field-divided">
-                        <option>- Choisissez un pays -</option>
+                        <option value = "-1">- Choisissez un pays -</option>
+                        <!--Ajout d'une condition sélected -->
                     {% for country in countries %}
                         {% set selected = '' %}
                             {% if (country.idCountry) == (client.idCountry) %}

@@ -23,7 +23,7 @@
                     <a href="{{ path }}format/index">Liste formats</a>
                     <a href="{{ path }}condition/create">Ajouter condition</a>
                     <a href="{{ path }}condition/index">Liste conditions</a>
-                    <a href="site-en-ligne/index.html">Site web</a>
+                    <a href="{{ path }}uxui_maquette_catalogue/">Site web</a>
                 </div>
             </button>
         </nav>
@@ -58,7 +58,7 @@
                 <li>
                     <label for="idCountry">Pays</label>
                     <select name="idCountry" class="field-long">
-                        <option>- Choisissez un pays -</option>
+                        <option value = "-1">- Choisissez un pays -</option>
                 {% endfor %}
 
                 {% for country in countries %}
@@ -76,7 +76,7 @@
                 <li>
                     <label for = "idFormat">Format & Condition<span class="required">*</span></label>
                     <select name="idFormat" class="field-divided">
-                        <option>- Choisissez un format -</option>
+                        <option value = "-1">- Choisissez un format -</option>
 
                 {% for format in formats %}
                     {% set selected = '' %}
@@ -89,7 +89,7 @@
                 {% endfor %}
                     </select>
                     <select name="idCondition" class="field-divided">
-                        <option>- Type de condition -</option>
+                        <option value = "-1">- Type de condition -</option>
 
                 {% for condition in conditions %}
                     {% set selected = '' %}

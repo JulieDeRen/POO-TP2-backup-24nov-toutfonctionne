@@ -11,6 +11,12 @@ class ModelStamp extends Crud {
     protected $fillable = ['id', 'name', 'price', 'priceEstimation', 'date', 'description', 'idCountry', 'idFormat', 'idCondition'];
 
     public function insertStamp($data){
+        // traiter les données non obligatoires qui posent problème si elle ne sont pas saisie dans la requête
+        foreach($data as $key => $value){
+            if(isset($data[$key]) && ($value=="" || $value=="-1")){
+                unset($data[$key]);
+            }
+        }
         $data_keys = array_fill_keys($this->fillable, '');
         $data_map = array_intersect_key($data, $data_keys);
         $nomChamp = implode(", ",array_keys($data_map));

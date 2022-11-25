@@ -23,7 +23,7 @@
                     <a href="{{ path }}format/index">Liste formats</a>
                     <a href="{{ path }}condition/create">Ajouter condition</a>
                     <a href="{{ path }}condition/index">Liste conditions</a>
-                    <a href="site-en-ligne/index.html">Site web</a>
+                    <a href="{{ path }}uxui_maquette_catalogue/">Site web</a>
                 </div>
             </button>
         </nav>
@@ -35,15 +35,15 @@
             <ul class="form-style-1">
                 <li>
                     <label for = "name">Nom du timbre<span class="required">*</span></label>
-                    <input type="text" name = "name" placeholder="Nom du timbre" class="field-long">
+                    <input type="text" name = "name" placeholder="Nom du timbre*" class="field-long">
                 </li>
                 <li>
                     <label for="price">Valeur<span class="required">*</span></label>
-                    <input type="number" name = "price" placeholder = "Prix actuel" class="field-divided">
-                    <input type="number" name = "priceEstimation" placeholder = "Estimation de la valeur*" class="field-divided">
+                    <input type="number" name = "price" placeholder = "Prix actuel*" class="field-divided">
+                    <input type="number" name = "priceEstimation" placeholder = "Estimation de la valeur" class="field-divided">
                 </li>
                 <li>
-                    <label for = "date">Date émission<span class="required">*</span></label>
+                    <label for = "date">Date émission</label>
                     <input type="date" name = "date" placeholder = "Date d'émission'" class="field-long">
                 </li>
                 <li>
@@ -53,7 +53,7 @@
                 <li>
                     <label for="idCountry">Pays</label>
                     <select name="idCountry" class="field-long">
-                        <option>- Choisissez un pays -</option>
+                        <option value = "-1">- Choisissez un pays -</option>
 
                     {% for country in countries %}
                         <option value="{{country.idCountry}}">{{country.countryName}}</option>
@@ -64,14 +64,14 @@
                 <li>
                     <label for = "idFormat">Format & Condition<span class="required">*</span></label>
                     <select name="idFormat" class="field-divided">
-                        <option>- Choisissez un format -</option>
+                        <option value = "-1">- Choisissez un format* -</option>
 
                     {% for format in formats %}
                         <option value="{{format.id}}">{{format.name}}</option>
                     {% endfor %}
                     </select>
                     <select name="idCondition" class="field-divided">
-                        <option>- Type de condition -</option>
+                        <option value = "-1">- Type de condition* -</option>
 
                     {% for condition in conditions %}
                         <option value="{{condition.id}}">{{condition.name}}</option>

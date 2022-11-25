@@ -10,24 +10,18 @@ abstract class Crud extends PDO {
     public function select($champ='id', $order='ASC' ){
         // La requête sql ne fonctionne pas pour la table condition s'il n'y a pas l'échappé
         $sql = "SELECT * FROM `$this->table` ORDER BY $champ $order"; 
-        //print_r($sql);
         $stmt  = $this->query($sql);
-        return  $stmt->fetchAll();
-    }
-
-    public function selectCountry($champ='idCountry', $order='ASC' ){
-        $sql = "SELECT * FROM `$this->table` ORDER BY $champ $order";
-        $stmt  = $this->query($sql);
+        // retourne tout ce qui correspond à la table
         return  $stmt->fetchAll();
     }
 
     public function selectId($value){
         $sql ="SELECT * FROM `$this->table` WHERE $this->primaryKey = :$this->primaryKey";
-        // print_r($sql);
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$this->primaryKey", $value);
         $stmt->execute();
         $count = $stmt->rowCount();
+        // si le id correspond à une donnée saisie alors retourner tout ce qui correspond à cette id sinon, générer message d'erreur
         if($count == 1 ){
             return $stmt->fetchAll(); // Modification ici fonction fetchAll()**
         }else{
@@ -36,6 +30,12 @@ abstract class Crud extends PDO {
     }
 
     public function insert($data){
+        // traiter les données non obligatoires qui posent problème (date, birthday, country) si elle ne sont pas saisie dans la requête
+        foreach($data as $key => $value){
+            if(isset($data[$key]) && ($value=="" || $value=="-1")){
+                unset($data[$key]);
+            }
+        }
         $data_keys = array_fill_keys($this->fillable, '');
         $data_map = array_intersect_key($data, $data_keys);
         $nomChamp = implode(", ",array_keys($data_map));
@@ -53,6 +53,12 @@ abstract class Crud extends PDO {
     }
     
     public function update($data){
+        // traiter les données non obligatoires qui posent problème si elle ne sont pas saisie dans la requête
+        foreach($data as $key => $value){
+            if(isset($data[$key]) && ($value=="" || $value=="-1")){
+                unset($data[$key]);
+            }
+        }
         $champRequete = null;
         foreach($data as $key=>$value){
             $champRequete .= "$key = :$key, ";
