@@ -13,7 +13,7 @@ class ControllerClient{
     }
 
     public function create(){
-       //twig::render('client-create.php');
+
        $country = new ModelCountry;
        $select = $country->selectCountry();
        twig::render('client-create.php', ['countries' => $select, 
@@ -21,12 +21,32 @@ class ControllerClient{
     }
 
    public function store(){
-        $client = new ModelClient;
-        $insert = $client->insertClient($_POST);
-        requirePage::redirectPage('client');
+        $validation = new Validation;
+    
+        //$validation->name('nom')->value($_POST['nom'])
+        extract($_POST);
+        $validation->name('nom')->value($lastName)->pattern('alpha')->required()->max(30);
+        $validation->name('prénom')->value($firstName)->pattern('alpha')->required()->max(30);
+        $validation->name('mot de passe')->value($password)->pattern('alpha')->required()->max(30);
+        $validation->name('email')->value($email)->pattern('email')->required()->max(50);
+
+
+        if($validation->isSuccess()){
+            $client = new ModelClient;
+            $insert = $client->insertClient($_POST);
+            requirePage::redirectPage('client');
+        }
+        else{
+            $errors = $validation->displayErrors();
+            $country = new ModelCountry;
+            $select = $country->selectCountry();
+            twig::render('client-create.php', ['errors'=>$errors, 'data'=>$_POST, 'countries' => $select, 
+            'country_list' => "Liste des pays"]);
+        }
     }
 
     public function show($id){
+        CheckSession::sessionAuth();
         $client = new ModelClient;
         $select = $client->selectId($id);
         $country = new ModelCountry;

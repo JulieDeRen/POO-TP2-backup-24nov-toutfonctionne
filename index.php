@@ -3,7 +3,9 @@
 require_once __DIR__ .'/library/RequirePage.php';
 require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/library/Twig.php'; // attention à majuscule ou minuscule ***
-require_once __DIR__.'/library/RenderView.php';
+require_once __DIR__.'/library/RenderView.php'; //???**** pourquoi disparu
+require_once __DIR__.'/library/Validation.php';
+require_once __DIR__.'/library/CheckSession.php';
 // if isset du chemin existe explode à la / et nettoryer pour renvoyer un tableau sinon juste /
 // le / c'est la racine (la page d'accueil)
 //print_r($_SERVER['PATH_INFO']);

@@ -13,7 +13,7 @@ body{
     line-height: 15px; 
     background-color: white;
 }
-*+*:not(textarea):not(select):not(h1):not(input):not(.flexVertical):not(nav a):not(nav button):not(.button>input):not(.button):not(img):not(.titre):not(li){
+*+*:not(dt):not(dd):not(dl):not(article div):not(article section):not(article):not(textarea):not(select):not(h1):not(input):not(.flexVertical):not(nav a):not(nav button):not(.button>input):not(.button):not(img):not(.titre):not(li){
     margin-bottom: 40px;
 }
 .grille{
@@ -332,8 +332,8 @@ input{
 .dropdown-content{
     position: absolute;
     display: none;
-    top: 15px;
-    left: -100px;
+    top: 50%;
+    right: 0;
     width: 100px;
 }
 
@@ -354,7 +354,7 @@ input{
 .dropdown:hover .dropdown-content{ 
     display: block;
     z-index: 3;
-    left: 0px; /* À cause de la "margin à 2px du .dropdown-content>a à corriger pour l'enligner*/
+    /*left: 0px;  À cause de la "margin à 2px du .dropdown-content>a à corriger pour l'enligner*/
     right: 0;
 }
 
@@ -362,7 +362,142 @@ footer{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    position: relative;
 }
+
+.btnVoirCode{
+    position: relative;
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    border-radius: 5px;
+    background-color:rgba(0, 13, 98, 0.6);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.btnVoirCode:hover{
+    padding: 1rem 1.72rem;
+    transition-duration: 500ms;
+    background-color:rgba(0, 13, 98, 1);
+}
+
+footer h2, 
+footer h3{
+    margin-bottom: 4rem;
+    font-size: 2rem;
+}
+
+/*-------- Caroussels ------------*/
+
+.caroussel-portail {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.caroussel-portail img{
+    max-height: 180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.caroussel-portail .flexVertical{
+    padding: 1.5rem;
+    /*border: 1px solid rgb(247, 247, 247);*/
+    /*box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  /*#1 Source : https://getcssscan.com/css-box-shadow-examples #0 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+}
+.caroussel-portail .flexVertical:hover{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; /* rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    cursor: pointer;
+}
+
+.caroussel-portail-liste {
+    display: flex;
+    flex-direction: column;
+}
+.caroussel-portail .flexVertical>div{
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+.caroussel-portail>* {
+    gap: 1rem;
+}
+.caroussel-portail dl {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  .caroussel-portail dt {
+    float: left;
+    width: 50%;
+    padding: 0;
+    margin-bottom: 1rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+  .caroussel-portail dd {
+    float: left;
+    text-align: right;
+    width: 50%;
+    padding: 0;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .utilitaire-alinement-bouton-encherir{
+    margin: 1.5rem 0 1rem 0;
+    text-align: center;
+    width: 100%;
+  }
+  .utilitaire-alinement-bouton-encherir a:hover{
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background-color: rgba(0, 13, 98, 1);
+    color: white;
+    outline: 1.75px solid rgba(0, 13, 98, 1);
+    outline: none;
+    font-size: 1.25rem;
+  }
+  .utilitaire-alinement-bouton-encherir a{
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+    transition-duration: 500ms;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.6rem;
+    outline: 1.75px solid #0000ff;
+    color: rgba(0, 13, 98, 1);
+    background-color: white; /*rgba(0, 13, 98, 1);*/
+    border-radius: 5px;
+    text-align: center;
+  }
+
+/*----- Typo carroussel -----*/
+.caroussel-portail h2{
+    font-size: 1.2rem;
+}
+.caroussel-portail h3{
+    font-size: 1rem;
+}
+.caroussel-portail .icone{
+    width: 30px;
+    height: 30px;
+    align-self: center;
+}
+.caroussel-portail .bouton-carte{
+    width: auto;
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+}
+
+
+
+
+
+
 
 
 

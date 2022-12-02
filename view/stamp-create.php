@@ -80,6 +80,10 @@
                     </select>
                 </li>
                 <li>
+                    <label for = "imgPath">Image</label>
+                    <input type="file" name = "imgPath" class="field-long">
+                </li>
+                <li>
                     <input type="submit" value = "save">
                 </li>
             </ul> 

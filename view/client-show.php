@@ -32,6 +32,9 @@
             <h1>Modifier</h1>
         </header>
     <main>
+        {% if errors is defined %}
+            <span class="error">{{ errors | raw}}</span>
+        {% endif %}
         <form action="{{ path }}client/update" method="post">
             <ul class="form-style-1">
                 {% for client in clients %}

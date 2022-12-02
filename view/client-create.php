@@ -31,6 +31,7 @@
             <img src="{{ path }}img/stamp_queen_1400.jpg" alt="Timbres">
             <h1 class="titre">Nouveau client</h1>
         </header>
+        <span class="error">{{ errors|raw }}</span>
         <form action="{{ path }}client/store" method="post">
             <ul class="form-style-1">
                 <li>
