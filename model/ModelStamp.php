@@ -10,28 +10,6 @@ class ModelStamp extends Crud {
 
     protected $fillable = ['id', 'name', 'price', 'priceEstimation', 'date', 'description', 'idCountry', 'idFormat', 'idCondition'];
 
-    public function insertStamp($data){
-        // traiter les données non obligatoires qui posent problème si elle ne sont pas saisie dans la requête
-        foreach($data as $key => $value){
-            if(isset($data[$key]) && ($value=="" || $value=="-1")){
-                unset($data[$key]);
-            }
-        }
-        $data_keys = array_fill_keys($this->fillable, '');
-        $data_map = array_intersect_key($data, $data_keys);
-        $nomChamp = implode(", ",array_keys($data_map));
-        $valeurChamp = ":".implode(", :", array_keys($data_map));
-        $sql = "INSERT INTO stamp ($nomChamp) VALUES ($valeurChamp)";
-        $stmt = $this->prepare($sql);
-        foreach($data_map as $key=>$value){
-            $stmt->bindValue(":$key", $value);
-        } 
-        if(!$stmt->execute()){
-            print_r($stmt->errorInfo());
-        }else{
-            return $this->lastInsertId();
-        }
-    }
     // problème pour moi avec les 
     public function selectStamp($champ='id', $order='ASC' ){
         // La requête sql ne fonctionne pas pour la table condition s'il n'y a pas l'échappé

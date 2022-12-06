@@ -15,7 +15,7 @@ class ControllerClient{
     public function create(){
 
        $country = new ModelCountry;
-       $select = $country->selectCountry();
+       $select = $country->select('countryName'); // passer la variable en param
        twig::render('client-create.php', ['countries' => $select, 
                     'country_list' => "Liste des pays"]);
     }
@@ -33,13 +33,13 @@ class ControllerClient{
 
         if($validation->isSuccess()){
             $client = new ModelClient;
-            $insert = $client->insertClient($_POST);
+            $insert = $client->insert($_POST);
             requirePage::redirectPage('client');
         }
         else{
             $errors = $validation->displayErrors();
             $country = new ModelCountry;
-            $select = $country->selectCountry();
+            $select = $country->select('countryName');
             twig::render('client-create.php', ['errors'=>$errors, 'data'=>$_POST, 'countries' => $select, 
             'country_list' => "Liste des pays"]);
         }
@@ -50,7 +50,7 @@ class ControllerClient{
         $client = new ModelClient;
         $select = $client->selectId($id);
         $country = new ModelCountry;
-        $selectCountry = $country->selectCountry(); // pour chaque boucle, il faut l'associer
+        $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
         twig::render("client-show.php", ['clients' => $select, 
                                         'countries'=> $selectCountry,
                                         'client_list' => "Liste de Client"]);

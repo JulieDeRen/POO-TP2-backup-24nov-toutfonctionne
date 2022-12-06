@@ -19,7 +19,7 @@ class ControllerStamp{
 
     public function create(){
        $country = new ModelCountry;
-       $selectCountry = $country->selectCountry(); // pour chaque boucle, il faut l'associer
+       $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
        $condition = new ModelCondition;
        $selectCondition = $condition->select();
        $format = new ModelFormat;
@@ -33,7 +33,7 @@ class ControllerStamp{
 
    public function store(){
         $stamp = new ModelStamp;
-        $insert = $stamp->insertStamp($_POST);
+        $insert = $stamp->insert($_POST);
         $img = new ModelImage;
         $insertImg = $img->insert($_POST);
         requirePage::redirectPage('stamp');
@@ -43,7 +43,7 @@ class ControllerStamp{
         $stamp = new ModelStamp;
         $select = $stamp->selectId($id);
         $country = new ModelCountry;
-        $selectCountry = $country->selectCountry(); // pour chaque boucle, il faut l'associer
+        $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
         $condition = new ModelCondition;
         $selectCondition = $condition->select();
         $format = new ModelFormat;
