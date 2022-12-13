@@ -32,6 +32,8 @@ abstract class Crud extends PDO {
     }
 
     public function insert($data){
+        // print_r($data);
+        // die();
         // traiter les données non obligatoires qui posent problème (date, birthday, country) si elle ne sont pas saisie dans la requête
         foreach($data as $key => $value){
             if(isset($data[$key]) && ($value=="" || $value=="-1")){
@@ -50,7 +52,9 @@ abstract class Crud extends PDO {
         if(!$stmt->execute()){
             print_r($stmt->errorInfo());
         }else{
-            return $this->lastInsertId();
+            // print_r($this->lastInsertId());
+            // die();
+            return $this->lastInsertId(); // no id
         }
     }
     
@@ -61,6 +65,8 @@ abstract class Crud extends PDO {
                 unset($data[$key]);
             }
         }
+        // print_r($data);
+        // die();
         $champRequete = null;
         foreach($data as $key=>$value){
             $champRequete .= "$key = :$key, ";
@@ -68,7 +74,7 @@ abstract class Crud extends PDO {
         $champRequete = rtrim($champRequete, ", ");
 
         $sql = "UPDATE `$this->table` SET $champRequete WHERE $this->primaryKey = :$this->primaryKey";
-
+        
         $stmt = $this->prepare($sql);
         foreach($data as $key=>$value){
             $stmt->bindValue(":$key", $value);
@@ -77,7 +83,7 @@ abstract class Crud extends PDO {
             print_r($stmt->errorInfo());
         }else{
            // header('Location: ' . $_SERVER['HTTP_REFERER']);
-           return true;
+           return $this->lastInsertId(); // no id
         }
     }
 
@@ -90,7 +96,7 @@ abstract class Crud extends PDO {
         if(!$stmt->execute()){
             print_r($stmt->errorInfo());
         }else{
-            return true;
+            return true; return $this->lastInsertId(); // no id
         }
     }
 }

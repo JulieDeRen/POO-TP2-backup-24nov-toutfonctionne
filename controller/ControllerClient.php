@@ -2,6 +2,9 @@
 RequirePage::requireModel('Crud');
 RequirePage::requireModel('ModelClient');
 RequirePage::requireModel('ModelCountry');
+RequirePage::requireModel('ModelUser');
+RequirePage::requireModel('ModelBasket');
+RequirePage::requireModel('ModelPriviledge');
 
 class ControllerClient{
 
@@ -16,39 +19,51 @@ class ControllerClient{
 
        $country = new ModelCountry;
        $select = $country->select('countryName'); // passer la variable en param
+       $priviledge = new ModelPriviledge;
+       $selectPriviledge = $priviledge->select('type'); // passer la variable en param
        twig::render('client-create.php', ['countries' => $select, 
+                    'priviledges' => $selectPriviledge,
                     'country_list' => "Liste des pays"]);
     }
 
-   public function store(){
+    public function store(){
         $validation = new Validation;
-    
-        //$validation->name('nom')->value($_POST['nom'])
         extract($_POST);
-        $validation->name('nom')->value($lastName)->pattern('alpha')->required()->max(30);
-        $validation->name('prénom')->value($firstName)->pattern('alpha')->required()->max(30);
-        $validation->name('mot de passe')->value($password)->pattern('alpha')->required()->max(30);
-        $validation->name('email')->value($email)->pattern('email')->required()->max(50);
-
+        $validation->name('nom')->value($firstName)->pattern('alpha')->required()->max(45);
+        // $validation->name('courriel')->value($email)->pattern('email')->required();
+        $validation->name('mot de passe')->value($password)->max(20)->min(5);
+        $validation->name('privilege')->value($idPriviledge)->pattern('int')->required();
 
         if($validation->isSuccess()){
             $client = new ModelClient;
-            $insert = $client->insert($_POST);
+            $clientInsert = $client ->insertClient($_POST);
+            $user = new ModelUser;
+            $options = [
+                'cost' => 10,
+            ];
+            $_POST['password']= password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
+            $userInsert = $user->insert($_POST);
             requirePage::redirectPage('client');
-        }
-        else{
+        }else{
             $errors = $validation->displayErrors();
             $country = new ModelCountry;
             $select = $country->select('countryName');
-            twig::render('client-create.php', ['errors'=>$errors, 'data'=>$_POST, 'countries' => $select, 
-            'country_list' => "Liste des pays"]);
+            $priviledge = new ModelPriviledge;
+            $selectPriviledge = $priviledge->select('type');
+            twig::render('client-create.php', ['errors'=>$errors, 
+                        'data'=>$_POST, 
+                        'countries' => $select, 
+                        'priviledges' => $selectPriviledge, 
+                        'country_list' => "Liste des pays"]);
         }
     }
+
+
 
     public function show($id){
         CheckSession::sessionAuth();
         $client = new ModelClient;
-        $select = $client->selectId($id);
+        $select = $client->selectClientId($id);
         $country = new ModelCountry;
         $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
         twig::render("client-show.php", ['clients' => $select, 
