@@ -6,7 +6,7 @@ class ControllerCountry{
 
     public function index(){
         $country = new ModelCountry;
-        $select = $country->selectCountry();
+        $select = $country->select('countryName');
         twig::render("country-index.php", ['countries' => $select, 
                                         'country_list' => "Liste de pays"]);
     }

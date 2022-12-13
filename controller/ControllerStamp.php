@@ -5,8 +5,8 @@ RequirePage::requireModel('ModelClient');
 RequirePage::requireModel('ModelCountry');
 RequirePage::requireModel('ModelCondition');
 RequirePage::requireModel('ModelFormat');
-//RequirePage::requireModel('ModelImage');
-//RequirePage::requireModel('ModelClient_Has_Stamp');
+RequirePage::requireModel('ModelImage');
+//RequirePage::requireModel('ModelBasket');
 
 class ControllerStamp{
 
@@ -19,7 +19,7 @@ class ControllerStamp{
 
     public function create(){
        $country = new ModelCountry;
-       $selectCountry = $country->selectCountry(); // pour chaque boucle, il faut l'associer
+       $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
        $condition = new ModelCondition;
        $selectCondition = $condition->select();
        $format = new ModelFormat;
@@ -33,7 +33,9 @@ class ControllerStamp{
 
    public function store(){
         $stamp = new ModelStamp;
-        $insert = $stamp->insertStamp($_POST);
+        $insert = $stamp->insert($_POST);
+        $img = new ModelImage;
+        $insertImg = $img->insert($_POST);
         requirePage::redirectPage('stamp');
     }
 
@@ -41,16 +43,19 @@ class ControllerStamp{
         $stamp = new ModelStamp;
         $select = $stamp->selectId($id);
         $country = new ModelCountry;
-        $selectCountry = $country->selectCountry(); // pour chaque boucle, il faut l'associer
+        $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
         $condition = new ModelCondition;
         $selectCondition = $condition->select();
         $format = new ModelFormat;
         $selectFormat = $format->select();
+        $img = new ModelImage;
+        $selectImg = $img->select();
         twig::render("stamp-show.php", [
                                         'stamps' => $select,
                                         'countries' => $selectCountry, 
                                         'conditions' => $selectCondition,
-                                        'formats' => $selectFormat
+                                        'formats' => $selectFormat,
+                                        'images' => $selectImg
                                         ]);
     }
 

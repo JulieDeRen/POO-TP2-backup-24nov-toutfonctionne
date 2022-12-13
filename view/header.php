@@ -1,5 +1,3 @@
-<!-- Le header est différent pas d'images -->
-
 <!DOCTYPE html>
     <html lang="fr">
     <head>
@@ -7,13 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ path }}css/stylesheet.css">
-        <title>Vente de timbre chez Stampee</title>
+        <title>{{ title }}</title>
     </head>
     <body>
         <nav class="navigation">
             <div class="logo"><a href="{{ path }}"class="logo"><img src="{{ path }}img/logo.png" alt="logo"></a></div>
             <a href="{{ path }}user/index">Registre des clients</a>
-            <a href="{{ path }}user/create">Ajouter un client</a>
+            <a href="{{ path }}client/create">Ajouter un client</a>
             <a href="{{ path }}stamp/index">Registre des timbres</a>
             <a href="{{ path }}stamp/create">Ajouter timbre</a>
             <a href="{{ path }}country/create">Ajouter un pays</a>
@@ -29,11 +27,7 @@
                 </div>
             </button>
         </nav>
-        <main>
-            <h2>C'est embêtant ...</h2>
-            <div class="erreur-404">
-                <img src="{{ path }}img/johntravolta404.gif" alt="erreur 404">
-            </div>
-        </main>
-    </body>
-</html>
+        <header class="entete-principal">
+            <img src="{{ path }}img/stamp_queen_1400.jpg" alt="Timbres">
+            <h1>{{ pageHeader }}</h1>
+        </header>

@@ -1,10 +1,9 @@
-{{ include('header.php', {title: 'Vente de timbres', pageHeader: 'Liste de client'})}}
+{{ include('header.php', {title: 'Vente de timbres', pageHeader: 'Modifier'})}}
     <main>
         {% if errors is defined %}
             <span class="error">{{ errors | raw}}</span>
         {% endif %}
-        <main>
-        <form action="{{ path }}client/update" method="post">
+        <form action="{{ path }}user/update" method="post">
             <ul class="form-style-1">
                 {% for user in users %}
                 <li>
@@ -23,43 +22,46 @@
                 <li>
                     <label for = "birthday">Anniversaire</label>
                     <input type="date" name = "birthday" value="{{user.birthday}}" class="field-divided">
-
-                {% endfor %}
-                {% for client in clients %}
-                    <select name="idCountry" class="field-divided">
-                        <option value = "-1">- Choisissez un pays -</option>
-                        <!--Ajout d'une condition sélected -->
-                    {% for country in countries %}
-                        {% set selected = '' %}
-                            {% if (country.idCountry) == (client.idCountry) %}
-                                {% set selected = 'selected' %}
-                            {% endif %}
-                        <option value="{{country.idCountry}}" {{selected}}>{{country.countryName}}</option>
                     {% endfor %}
-                    </select>
-                </li>
-                <li>
-                    <label for="addresse">Adresse</label>
-                    <input type="text" name = "addresse" value="{{client.addresse}}" class="field-divided">
-                {% endfor %}
-                {% for user in users %}
+                    
                     <select name="idPriviledge" class="field-divided">
-                        <option value = "-1">- Choisissez un privilège -</option>
+                        <option value = "-1">- Choisissez un privilege -</option>
                         <!--Ajout d'une condition sélected -->
                     {% for priviledge in priviledges %}
                         {% set selected = '' %}
+                        {% for user in users %}
                             {% if (priviledge.id) == (user.idPriviledge) %}
                                 {% set selected = 'selected' %}
                             {% endif %}
+                        {% endfor %}
                         <option value="{{priviledge.id}}" {{selected}}>{{priviledge.type}}</option>
                     {% endfor %}
                     </select>
                 </li>
                 <li>
+                    <label for="addresse">Adresse</label>
+                    <input type="text" name = "addresse" value="{{client.addresse}}" class="field-divided"> 
+                    <select name="idCountry" class="field-divided">
+                        <option value = "-1">- Choisissez un pays -</option>
+
+                {% for country in countries %}
+                    {% set selected = '' %}
+                        {% for client in clients %}
+                            {% if (country.idCountry) == (client.idCountry) %}
+                                {% set selected = 'selected' %}
+                            {% endif %}
+                        {% endfor %}
+                        <option value="{{country.idCountry}}" {{selected}}>{{country.countryName}}</option>
+                {% endfor %}
+                  
+                {% for user in users %}
+                    </select>              
+                </li>
+                <li>
                     <input type="submit" value="Modifier">
                 </li>
         </form>
-        <form action="{{ path }}client/delete" method="post">
+        <form action="{{ path }}user/delete" method="post">
                 <li>
                     <input type="hidden" name="id" value="{{user.id}}">
                 </li>

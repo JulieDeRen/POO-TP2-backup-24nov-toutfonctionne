@@ -1,0 +1,126 @@
+<?php
+RequirePage::requireModel('Crud');
+RequirePage::requireModel('ModelClient');
+RequirePage::requireModel('ModelCountry');
+RequirePage::requireModel('ModelUser');
+RequirePage::requireModel('ModelBasket');
+RequirePage::requireModel('ModelPriviledge');
+
+class ControllerUser{
+
+    public function index(){
+        $user = new ModelUser;
+        $select = $user->selectUser();
+        // print_r($select);
+        // die();
+        twig::render("user-index.php", ['users' => $select, 
+                                        'user_list' => "Liste des utilisateurs"]);
+    }
+
+    public function create(){
+        $privilege = new ModelPriviledge;
+        $selectPriviledge = $privilege->select();
+        twig::render('user-create.php', ['privileges' => $selectPriviledge]);
+    }
+    public function store(){
+        $validation = new Validation;
+        extract($_POST);
+        $validation->name('nom')->value($firstName)->pattern('alpha')->required()->max(45);
+        // $validation->name('courriel')->value($email)->pattern('email')->required();
+        $validation->name('mot de passe')->value($password)->max(20)->min(6);
+        $validation->name('privilege')->value($idPriviledge)->pattern('int')->required();
+
+        if($validation->isSuccess()){
+            $user = new ModelUser;
+            $options = [
+                'cost' => 10,
+            ];
+            $_POST['password']= password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
+            $userInsert = $user->insert($_POST);
+            // print_r($_POST);
+            $client = new ModelClient;
+            // passer post et id en paramêtre puisque id client est le id du user
+            $clientInsert = $client ->insertClient($_POST, $userInsert); 
+            requirePage::redirectPage('user');
+        }else{
+            $errors = $validation->displayErrors();
+            $privilege = new ModelPriviledge;
+            $selectPriviledge = $privilege->select();
+            twig::render('client-create.php', ['errors' => $errors,
+            'privileges' => $selectPriviledge, 'user' => $_POST]);
+        }
+    }
+
+    public function show($id){
+        // CheckSession::sessionAuth();
+        $user = new ModelUser;
+        $select = $user->selectUserId($id);
+        // $client = new ModelClient;
+        // $selectClient = $client -> selectClientId($id);
+        $priviledge = new ModelPriviledge;
+        $selectPriviledge = $priviledge->select();
+        $country = new ModelCountry;
+        $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
+        twig::render("user-show.php", [ 'users' => $select,
+                                        /* 'clients' => $selectClient, */
+                                        'priviledges' => $selectPriviledge,
+                                        'countries'=> $selectCountry,
+                                        'client_list' => "Liste de Client"]);
+    }
+
+    public function login(){
+        twig::render('user-login.php');
+    }
+
+    public function auth(){
+        $validation = new Validation;
+        extract($_POST);
+        $validation->name('courriel')->value($email)->pattern('email')->required();
+        $validation->name('password')->value($password)->required();
+
+        if($validation->isSuccess()){
+
+            $user = new ModelUser;
+            $checkUser = $user->checkUser($_POST);
+            
+            twig::render('user-login.php', ['errors' => $checkUser, 'user' => $_POST]);
+        
+        }else{
+            $errors = $validation->displayErrors();
+            twig::render('user-login.php', ['errors' => $errors, 'user' => $_POST]);
+        }
+    }
+
+    public function logout(){
+        session_destroy();
+        requirePage::redirectPage('user/login');
+    }
+
+    public function edit($id){
+        $user = new ModelUser;
+        $select = $user->selectId($id);
+        twig::render('user-edit.php');
+    }
+    
+    public function update(){
+        $user = new ModelUser;
+        $update = $user ->update($_POST);
+        $client = new ModelClient;
+        $update = $client ->updateClient($_POST);
+
+        // print_r($_POST);
+        // die();
+        RequirePage::redirectPage('user');
+    }
+    public function delete(){
+        $user = new ModelUser;
+        $delete = $user->delete($_POST['id']);
+        $client = new ModelClient;
+        $delete = $client->delete($_POST['id'], $delete);
+        RequirePage::redirectPage('user');
+    }
+
+
+}
+
+?>

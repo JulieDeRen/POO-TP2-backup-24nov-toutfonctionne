@@ -32,6 +32,8 @@ abstract class Crud extends PDO {
     }
 
     public function insert($data){
+        // print_r($data);
+        // die();
         // traiter les données non obligatoires qui posent problème (date, birthday, country) si elle ne sont pas saisie dans la requête
         foreach($data as $key => $value){
             if(isset($data[$key]) && ($value=="" || $value=="-1")){
@@ -50,7 +52,9 @@ abstract class Crud extends PDO {
         if(!$stmt->execute()){
             print_r($stmt->errorInfo());
         }else{
-            return $this->lastInsertId();
+            // print_r($this->lastInsertId());
+            // die();
+            return $this->lastInsertId(); // no id
         }
     }
     
@@ -62,15 +66,17 @@ abstract class Crud extends PDO {
             }
         }
         $champRequete = null;
-        foreach($data as $key=>$value){
+        $data_keys = array_fill_keys($this->fillable, '');
+        $data_map = array_intersect_key($data, $data_keys);
+        foreach($data_map as $key=>$value){
             $champRequete .= "$key = :$key, ";
         }
         $champRequete = rtrim($champRequete, ", ");
 
-        $sql = "UPDATE `$this->table` SET $champRequete WHERE $this->primaryKey = :$this->primaryKey";
+        $sql = "UPDATE $this->table SET $champRequete WHERE $this->primaryKey = :$this->primaryKey";
 
         $stmt = $this->prepare($sql);
-        foreach($data as $key=>$value){
+        foreach($data_map as $key=>$value){
             $stmt->bindValue(":$key", $value);
         } 
         if(!$stmt->execute()){
@@ -85,12 +91,13 @@ abstract class Crud extends PDO {
 
         $sql = "DELETE FROM `$this->table` WHERE $this->primaryKey = :$this->primaryKey";
 
+        
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$this->primaryKey", $id);
         if(!$stmt->execute()){
             print_r($stmt->errorInfo());
         }else{
-            return true;
+            return true; 
         }
     }
 }
