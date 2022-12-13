@@ -65,25 +65,25 @@ abstract class Crud extends PDO {
                 unset($data[$key]);
             }
         }
-        // print_r($data);
-        // die();
         $champRequete = null;
-        foreach($data as $key=>$value){
+        $data_keys = array_fill_keys($this->fillable, '');
+        $data_map = array_intersect_key($data, $data_keys);
+        foreach($data_map as $key=>$value){
             $champRequete .= "$key = :$key, ";
         }
         $champRequete = rtrim($champRequete, ", ");
 
-        $sql = "UPDATE `$this->table` SET $champRequete WHERE $this->primaryKey = :$this->primaryKey";
-        
+        $sql = "UPDATE $this->table SET $champRequete WHERE $this->primaryKey = :$this->primaryKey";
+
         $stmt = $this->prepare($sql);
-        foreach($data as $key=>$value){
+        foreach($data_map as $key=>$value){
             $stmt->bindValue(":$key", $value);
         } 
         if(!$stmt->execute()){
             print_r($stmt->errorInfo());
         }else{
            // header('Location: ' . $_SERVER['HTTP_REFERER']);
-           return $this->lastInsertId(); // no id
+           return true;
         }
     }
 
@@ -91,12 +91,13 @@ abstract class Crud extends PDO {
 
         $sql = "DELETE FROM `$this->table` WHERE $this->primaryKey = :$this->primaryKey";
 
+        
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$this->primaryKey", $id);
         if(!$stmt->execute()){
             print_r($stmt->errorInfo());
         }else{
-            return true; return $this->lastInsertId(); // no id
+            return true; 
         }
     }
 }

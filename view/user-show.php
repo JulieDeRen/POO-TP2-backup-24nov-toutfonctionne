@@ -29,9 +29,11 @@
                         <!--Ajout d'une condition sélected -->
                     {% for priviledge in priviledges %}
                         {% set selected = '' %}
+                        {% for user in users %}
                             {% if (priviledge.id) == (user.idPriviledge) %}
                                 {% set selected = 'selected' %}
                             {% endif %}
+                        {% endfor %}
                         <option value="{{priviledge.id}}" {{selected}}>{{priviledge.type}}</option>
                     {% endfor %}
                     </select>

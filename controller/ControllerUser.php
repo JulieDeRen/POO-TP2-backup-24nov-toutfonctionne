@@ -105,10 +105,11 @@ class ControllerUser{
     public function update(){
         $user = new ModelUser;
         $update = $user ->update($_POST);
-        // print_r($_POST['addresse']);
-        // die();
         $client = new ModelClient;
         $update = $client ->updateClient($_POST);
+
+        // print_r($_POST);
+        // die();
         RequirePage::redirectPage('user');
     }
     public function delete(){

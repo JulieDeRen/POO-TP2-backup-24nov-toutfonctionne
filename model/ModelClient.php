@@ -37,17 +37,18 @@ class ModelClient extends Crud {
     // jointure pour montrer tous les clients incluants ceux qui ont ou pas de pays inscrit
     public function selectClient($champ='id', $order='ASC' ){
         // La requête sql ne fonctionne pas pour la table condition s'il n'y a pas l'échappé
-        $sql = "SELECT `client`.id, `user`.lastName, `user`.firstName,  `client`.addresse, `user`.birthday, `user`.lastName,  `user`.email, `country`.countryName,`user`.idPriviledge FROM `client` RIGHT JOIN `user` ON `client`.id = `user`.id LEFT JOIN `country` ON `client`.id = `user`.id ORDER BY $champ $order"; 
+        $sql = "SELECT `client`.id, `user`.lastName, `user`.firstName,  `client`.addresse, `user`.birthday, `user`.lastName,  `user`.email, `country`.countryName,`user`.idPriviledge FROM `client` RIGHT JOIN `user` ON `client`.id = `user`.id LEFT JOIN `country` ON `client`.idCountry = `country`.idCountry ORDER BY $champ $order"; 
 
         $stmt  = $this->query($sql);
         return  $stmt->fetchAll();
     }
 
     public function selectClientId($value){
-        $sql ="SELECT * FROM `client` WHERE $this->primaryKey = $value";
+        //print_r($value);
+        //die();
+        $sql ="SELECT `client`.id as `id`, `user`.id, `user`.lastName, `user`.firstName,  `client`.addresse, `user`.birthday, `user`.lastName,  `user`.email, `country`.countryName,`user`.idPriviledge, `priviledge`.id  FROM `client` INNER JOIN `user` ON `client`.id = `user`.id LEFT JOIN `country` ON `client`.idCountry = `country`.idCountry INNER JOIN `priviledge` ON `user`.idPriviledge = `priviledge`.id WHERE `client`.$this->primaryKey = $value";
 
-        // SELECT `client`.id, `user`.lastName, `user`.firstName,  `client`.addresse, `user`.birthday, `user`.lastName,  `user`.email, `country`.countryName,`user`.idPriviledge FROM `client` RIGHT JOIN `user` ON `client`.id = `user`.id LEFT JOIN `country` ON `client`.id = `user`.id WHERE $this->primaryKey = $value";
-
+        //$sql ="SELECT * FROM `client` INNER JOIN `user` ON `client`.id = `user`.id LEFT JOIN `country` ON `client`.idCountry = `country`.idCountry INNER JOIN `priviledge` ON `user`.idPriviledge = `priviledge`.id WHERE `client`.$this->primaryKey = $value";
 
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$this->primaryKey", $value);
@@ -68,15 +69,18 @@ class ModelClient extends Crud {
                 unset($data[$key]);
             }
         }
-        //print_r($data);
-        //die();
+        print_r($data);
+        die();
         $champRequete = null;
         foreach($data as $key=>$value){
             $champRequete .= "$key = :$key, ";
         }
         $champRequete = rtrim($champRequete, ", ");
 
-        $sql = "UPDATE `$this->table` SET `addresse` = ['addresse'], `idCountry` = ['idCountry']  WHERE $this->primaryKey = :$this->primaryKey";
+        $sql = "UPDATE `$this->table` SET `addresse` = " . $data['addresse'] .", `idCountry` = " . $data['idCountry'] . " WHERE $this->primaryKey = :$this->primaryKey";
+
+        print_r($sql);
+        die();
         
         $stmt = $this->prepare($sql);
         foreach($data as $key=>$value){
@@ -91,6 +95,20 @@ class ModelClient extends Crud {
            return $this->lastInsertId(); // no id
         }
     }
+
+    public function deleteClient($id){
+
+        $sql = "DELETE * FROM `user` INNER JOIN `client` ON `client`.id = `user`.id WHERE `user`.id = $id";
+
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$this->primaryKey", $id);
+        if(!$stmt->execute()){
+            print_r($stmt->errorInfo());
+        }else{
+            return true; // no id
+        }
+    }
+
     
 }
 

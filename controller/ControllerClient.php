@@ -31,18 +31,20 @@ class ControllerClient{
         extract($_POST);
         $validation->name('nom')->value($firstName)->pattern('alpha')->required()->max(45);
         // $validation->name('courriel')->value($email)->pattern('email')->required();
-        $validation->name('mot de passe')->value($password)->max(20)->min(5);
+        $validation->name('mot de passe')->value($password)->max(20)->min(6);
         $validation->name('privilege')->value($idPriviledge)->pattern('int')->required();
 
         if($validation->isSuccess()){
-            $client = new ModelClient;
-            $clientInsert = $client ->insertClient($_POST);
             $user = new ModelUser;
             $options = [
                 'cost' => 10,
             ];
             $_POST['password']= password_hash($_POST['password'], PASSWORD_BCRYPT, $options);
             $userInsert = $user->insert($_POST);
+            // print_r($_POST);
+            $client = new ModelClient;
+            // passer post et id en paramêtre puisque id client est le id du user
+            $clientInsert = $client ->insertClient($_POST, $userInsert); 
             requirePage::redirectPage('client');
         }else{
             $errors = $validation->displayErrors();
@@ -61,12 +63,23 @@ class ControllerClient{
 
 
     public function show($id){
-        CheckSession::sessionAuth();
+        // CheckSession::sessionAuth();
+        // $user = new ModelUser;
+        // $select = $user->selectUserId($id);
         $client = new ModelClient;
-        $select = $client->selectClientId($id);
+        $selectClient = $client -> selectId($id);
+        $user = new ModelUser;
+        $selectUser = $user -> selectId($id);
+        // print_r($selectUser);
+        // die();
+        $priviledge = new ModelPriviledge;
+        $selectPriviledge = $priviledge->select();
         $country = new ModelCountry;
         $selectCountry = $country->select('countryName'); // pour chaque boucle, il faut l'associer
-        twig::render("client-show.php", ['clients' => $select, 
+        twig::render("client-show.php", [ /* 'users' => $select, */
+                                        'clients' => $selectClient, 
+                                        'users' => $selectUser, 
+                                        'priviledges' => $selectPriviledge,
                                         'countries'=> $selectCountry,
                                         'client_list' => "Liste de Client"]);
     }
@@ -76,8 +89,10 @@ class ControllerClient{
         $select = $client->selectId($id);
         twig::render('client-edit.php');
     }
-    // *** ?? A quoi servent $update et $delete ?
     public function update(){
+        $user = new ModelUser;
+        $update = $user ->update($_POST);
+        // die();
         $client = new ModelClient;
         $update = $client ->update($_POST);
         RequirePage::redirectPage('client');
@@ -85,6 +100,9 @@ class ControllerClient{
     public function delete(){
         $client = new ModelClient;
         $delete = $client->delete($_POST['id']);
+        $user = new ModelUser;
+        $delete = $user ->delete($_POST['id']);
+
         RequirePage::redirectPage('client');
     }
 }
