@@ -362,7 +362,32 @@ footer{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    position: relative;
 }
+
+.btnVoirCode{
+    position: relative;
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    border-radius: 5px;
+    background-color:rgba(0, 13, 98, 0.6);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.btnVoirCode:hover{
+    padding: 1rem 1.72rem;
+    transition-duration: 500ms;
+    background-color:rgba(0, 13, 98, 1);
+}
+
+footer h2, 
+footer h3{
+    margin-bottom: 4rem;
+    font-size: 2rem;
+}
+
+
 
 
 

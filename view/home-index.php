@@ -37,6 +37,9 @@
                 <img src="{{ path }}img/climbing.jpg" alt="climbing">
             </div>
         </main>
-        <footer>Projet web avancé - Cours de Marcos Sanches</footer>
+        <footer>
+            <h2>Projet web avancé - Cours de Marcos Sanches</h2> 
+            <h3><a href="https://github.com/JulieDeRen/POO-TP2" class="btnVoirCode">Voir le code</a></h3>
+        </footer>
     </body>
 </html>
